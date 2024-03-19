@@ -1,0 +1,368 @@
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import app.apaiary.aquaapp.databinding.ActivityMain3Binding;
+import ingenieria.jhr.bluetoothjhr.BluetoothJhr;
+import java.util.List;
+import kotlin.Metadata;
+import kotlin.collections.CollectionsKt;
+import kotlin.concurrent.ThreadsKt;
+import kotlin.jvm.internal.Intrinsics;
+import kotlin.jvm.internal.Ref;
+
+/* compiled from: MainActivity3.kt */
+@Metadata(d1 = {"\u0000H\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\u000b\n\u0002\b\b\n\u0002\u0010\u000e\n\u0002\b\u000f\n\u0002\u0010\u0007\n\u0000\n\u0002\u0010\u0006\n\u0002\b\u0002\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0004\u0018\u00002\u00020\u0001B\u0005¢\u0006\u0002\u0010\u0002J&\u0010'\u001a\u00020\u00192\u0006\u0010 \u001a\u00020\u00192\u0006\u0010(\u001a\u00020)2\u0006\u0010*\u001a\u00020+2\u0006\u0010,\u001a\u00020+J\u0012\u0010-\u001a\u00020.2\b\u0010/\u001a\u0004\u0018\u000100H\u0014J\b\u00101\u001a\u00020.H\u0014J\b\u00102\u001a\u00020.H\u0014J\b\u00103\u001a\u00020.H\u0014R\u001a\u0010\u0003\u001a\u00020\u0004X\u0086.¢\u0006\u000e\n\u0000\u001a\u0004\b\u0005\u0010\u0006\"\u0004\b\u0007\u0010\bR\u001a\u0010\t\u001a\u00020\nX\u0086.¢\u0006\u000e\n\u0000\u001a\u0004\b\u000b\u0010\f\"\u0004\b\r\u0010\u000eR\u001a\u0010\u000f\u001a\u00020\u0010X\u0086\u000e¢\u0006\u000e\n\u0000\u001a\u0004\b\u0011\u0010\u0012\"\u0004\b\u0013\u0010\u0014R\u001a\u0010\u0015\u001a\u00020\u0010X\u0086\u000e¢\u0006\u000e\n\u0000\u001a\u0004\b\u0016\u0010\u0012\"\u0004\b\u0017\u0010\u0014R\u0014\u0010\u0018\u001a\u00020\u0019X\u0086D¢\u0006\b\n\u0000\u001a\u0004\b\u001a\u0010\u001bR\u0014\u0010\u001c\u001a\u00020\u0019X\u0086D¢\u0006\b\n\u0000\u001a\u0004\b\u001d\u0010\u001bR\u0014\u0010\u001e\u001a\u00020\u0019X\u0086D¢\u0006\b\n\u0000\u001a\u0004\b\u001f\u0010\u001bR\u001a\u0010 \u001a\u00020\u0019X\u0086\u000e¢\u0006\u000e\n\u0000\u001a\u0004\b!\u0010\u001b\"\u0004\b\"\u0010#R\u001a\u0010$\u001a\u00020\u0019X\u0086\u000e¢\u0006\u000e\n\u0000\u001a\u0004\b%\u0010\u001b\"\u0004\b&\u0010#¨\u00064"}, d2 = {"Lapp/apaiary/aquaapp/MainActivity3;", "Landroidx/appcompat/app/AppCompatActivity;", "()V", "bindign3", "Lapp/apaiary/aquaapp/databinding/ActivityMain3Binding;", "getBindign3", "()Lapp/apaiary/aquaapp/databinding/ActivityMain3Binding;", "setBindign3", "(Lapp/apaiary/aquaapp/databinding/ActivityMain3Binding;)V", "bluetooth", "Lingenieria/jhr/bluetoothjhr/BluetoothJhr;", "getBluetooth", "()Lingenieria/jhr/bluetoothjhr/BluetoothJhr;", "setBluetooth", "(Lingenieria/jhr/bluetoothjhr/BluetoothJhr;)V", "hilo", ingenieria.jhr.bluetoothjhr.BuildConfig.FLAVOR, "getHilo", "()Z", "setHilo", "(Z)V", "initHilo", "getInitHilo", "setInitHilo", "key", ingenieria.jhr.bluetoothjhr.BuildConfig.FLAVOR, "getKey", "()Ljava/lang/String;", "keyTemp", "getKeyTemp", "keyVolt", "getKeyVolt", "mensaje", "getMensaje", "setMensaje", "(Ljava/lang/String;)V", "mensajeTemp", "getMensajeTemp", "setMensajeTemp", "medicionOxigeno", "tempReferencia", ingenieria.jhr.bluetoothjhr.BuildConfig.FLAVOR, "voltCalibracion", ingenieria.jhr.bluetoothjhr.BuildConfig.FLAVOR, "tempCalibracion", "onCreate", ingenieria.jhr.bluetoothjhr.BuildConfig.FLAVOR, "savedInstanceState", "Landroid/os/Bundle;", "onDestroy", "onPause", "onResume", "app_debug"}, k = 1, mv = {1, 5, 1}, xi = 48)
+/* loaded from: classes3.dex */
+public final class MainActivity3 extends AppCompatActivity {
+    public ActivityMain3Binding bindign3;
+    public BluetoothJhr bluetooth;
+    private boolean initHilo;
+    private boolean hilo = true;
+    private String mensaje = ingenieria.jhr.bluetoothjhr.BuildConfig.FLAVOR;
+    private String mensajeTemp = ingenieria.jhr.bluetoothjhr.BuildConfig.FLAVOR;
+    private final String key = "VoltCalibracion";
+    private final String keyVolt = "Voltaje";
+    private final String keyTemp = "TempCalibracion";
+
+    public final BluetoothJhr getBluetooth() {
+        BluetoothJhr bluetoothJhr = this.bluetooth;
+        if (bluetoothJhr != null) {
+            return bluetoothJhr;
+        }
+        Intrinsics.throwUninitializedPropertyAccessException("bluetooth");
+        throw null;
+    }
+
+    public final void setBluetooth(BluetoothJhr bluetoothJhr) {
+        Intrinsics.checkNotNullParameter(bluetoothJhr, "<set-?>");
+        this.bluetooth = bluetoothJhr;
+    }
+
+    public final ActivityMain3Binding getBindign3() {
+        ActivityMain3Binding activityMain3Binding = this.bindign3;
+        if (activityMain3Binding != null) {
+            return activityMain3Binding;
+        }
+        Intrinsics.throwUninitializedPropertyAccessException("bindign3");
+        throw null;
+    }
+
+    public final void setBindign3(ActivityMain3Binding activityMain3Binding) {
+        Intrinsics.checkNotNullParameter(activityMain3Binding, "<set-?>");
+        this.bindign3 = activityMain3Binding;
+    }
+
+    public final boolean getInitHilo() {
+        return this.initHilo;
+    }
+
+    public final void setInitHilo(boolean z) {
+        this.initHilo = z;
+    }
+
+    public final boolean getHilo() {
+        return this.hilo;
+    }
+
+    public final void setHilo(boolean z) {
+        this.hilo = z;
+    }
+
+    public final String getMensaje() {
+        return this.mensaje;
+    }
+
+    public final void setMensaje(String str) {
+        Intrinsics.checkNotNullParameter(str, "<set-?>");
+        this.mensaje = str;
+    }
+
+    public final String getMensajeTemp() {
+        return this.mensajeTemp;
+    }
+
+    public final void setMensajeTemp(String str) {
+        Intrinsics.checkNotNullParameter(str, "<set-?>");
+        this.mensajeTemp = str;
+    }
+
+    public final String getKey() {
+        return this.key;
+    }
+
+    public final String getKeyVolt() {
+        return this.keyVolt;
+    }
+
+    public final String getKeyTemp() {
+        return this.keyTemp;
+    }
+
+    /* JADX INFO: Access modifiers changed from: protected */
+    @Override // androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ActivityMain3Binding inflate = ActivityMain3Binding.inflate(getLayoutInflater());
+        Intrinsics.checkNotNullExpressionValue(inflate, "inflate(layoutInflater)");
+        setBindign3(inflate);
+        setContentView(getBindign3().getRoot());
+        final SharedPreferences memoria = getSharedPreferences(this.key, 0);
+        setBluetooth(new BluetoothJhr(this, MainActivity.class));
+        getBindign3().textView7.setVisibility(4);
+        getBindign3().textView8.setVisibility(4);
+        getBindign3().textView9.setVisibility(4);
+        getBindign3().btnCalibracion1.setVisibility(4);
+        getBindign3().temCalibracion1.setVisibility(4);
+        getBindign3().textoResultCalibracion1.setVisibility(4);
+        getBindign3().btnAceptarCalibracion.setVisibility(4);
+        final Ref.ObjectRef oxigeno = new Ref.ObjectRef();
+        oxigeno.element = "0.0";
+        final Ref.DoubleRef voltCalibracion = new Ref.DoubleRef();
+        voltCalibracion.element = 390.625d;
+        final Ref.DoubleRef tempCalibracion = new Ref.DoubleRef();
+        tempCalibracion.element = 20.5d;
+        final Ref.FloatRef tempReferencia = new Ref.FloatRef();
+        tempReferencia.element = Float.parseFloat(getBindign3().campoTemperatura1.getText().toString());
+        onCreate$medicion(voltCalibracion, tempCalibracion, this, memoria, tempReferencia, oxigeno);
+        getBindign3().botonOKTemp.setOnClickListener(new View.OnClickListener() { // from class: app.apaiary.aquaapp.-$$Lambda$MainActivity3$73SDmrJPokNrpWJVSakzkGxrg6g
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view) {
+                MainActivity3.m15onCreate$lambda1(Ref.FloatRef.this, this, voltCalibracion, tempCalibracion, memoria, oxigeno, view);
+            }
+        });
+        getBindign3().calibrar1.setOnClickListener(new View.OnClickListener() { // from class: app.apaiary.aquaapp.-$$Lambda$MainActivity3$_ej_M9N9UOsmFoOrELLOBPXnlFY
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view) {
+                MainActivity3.m16onCreate$lambda4(MainActivity3.this, memoria, voltCalibracion, tempCalibracion, tempReferencia, oxigeno, view);
+            }
+        });
+    }
+
+    private static final String onCreate$recuperarVoltaje(SharedPreferences memoria, MainActivity3 this$0) {
+        String nuevoVoltaje = memoria.getString(this$0.keyVolt, ingenieria.jhr.bluetoothjhr.BuildConfig.FLAVOR);
+        return nuevoVoltaje;
+    }
+
+    private static final String onCreate$recuperarTemperatura(SharedPreferences memoria, MainActivity3 this$0) {
+        String nuevaTemperatura = memoria.getString(this$0.keyTemp, ingenieria.jhr.bluetoothjhr.BuildConfig.FLAVOR);
+        return nuevaTemperatura;
+    }
+
+    private static final void onCreate$medicion(Ref.DoubleRef voltCalibracion, Ref.DoubleRef tempCalibracion, final MainActivity3 this$0, SharedPreferences memoria, final Ref.FloatRef tempReferencia, Ref.ObjectRef<String> objectRef) {
+        String nuevoVoltaje = onCreate$recuperarVoltaje(memoria, this$0);
+        String nuevaTemperatura = onCreate$recuperarTemperatura(memoria, this$0);
+        if (!Intrinsics.areEqual(nuevoVoltaje, ingenieria.jhr.bluetoothjhr.BuildConfig.FLAVOR)) {
+            voltCalibracion.element = Double.parseDouble(String.valueOf(nuevoVoltaje));
+            tempCalibracion.element = Double.parseDouble(String.valueOf(nuevaTemperatura));
+        }
+        this$0.getBindign3().botonOKTemp.setOnClickListener(new View.OnClickListener() { // from class: app.apaiary.aquaapp.-$$Lambda$MainActivity3$-Qxf-J4kEOzLyzw19Vt5Fv9yE-8
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view) {
+                MainActivity3.m17onCreate$medicion$lambda0(Ref.FloatRef.this, this$0, view);
+            }
+        });
+        ThreadsKt.thread$default(true, false, null, null, 0, new MainActivity3$onCreate$medicion$2(this$0, objectRef, voltCalibracion, tempCalibracion), 30, null);
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    /* renamed from: onCreate$medicion$lambda-0  reason: not valid java name */
+    public static final void m17onCreate$medicion$lambda0(Ref.FloatRef tempReferencia, MainActivity3 this$0, View it) {
+        Intrinsics.checkNotNullParameter(tempReferencia, "$tempReferencia");
+        Intrinsics.checkNotNullParameter(this$0, "this$0");
+        tempReferencia.element = Float.parseFloat(this$0.getBindign3().campoTemperatura1.getText().toString());
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    /* renamed from: onCreate$lambda-1  reason: not valid java name */
+    public static final void m15onCreate$lambda1(Ref.FloatRef tempReferencia, MainActivity3 this$0, Ref.DoubleRef voltCalibracion, Ref.DoubleRef tempCalibracion, SharedPreferences $memoria, Ref.ObjectRef oxigeno, View it) {
+        Intrinsics.checkNotNullParameter(tempReferencia, "$tempReferencia");
+        Intrinsics.checkNotNullParameter(this$0, "this$0");
+        Intrinsics.checkNotNullParameter(voltCalibracion, "$voltCalibracion");
+        Intrinsics.checkNotNullParameter(tempCalibracion, "$tempCalibracion");
+        Intrinsics.checkNotNullParameter(oxigeno, "$oxigeno");
+        tempReferencia.element = Float.parseFloat(this$0.getBindign3().campoTemperatura1.getText().toString());
+        onCreate$medicion(voltCalibracion, tempCalibracion, this$0, $memoria, tempReferencia, oxigeno);
+    }
+
+    private static final void onCreate$guardar(SharedPreferences memoria, MainActivity3 this$0, String voltajeCalibrar, String tempCalibrar) {
+        memoria.edit().putString(this$0.keyVolt, voltajeCalibrar).apply();
+        memoria.edit().putString(this$0.keyTemp, tempCalibrar).apply();
+    }
+
+    private static final void onCreate$calibracion(final MainActivity3 this$0, final SharedPreferences memoria, final Ref.DoubleRef voltCalibracion, final Ref.DoubleRef tempCalibracion, final Ref.FloatRef tempReferencia, final Ref.ObjectRef<String> objectRef) {
+        this$0.getBindign3().frameLayout.setVisibility(4);
+        this$0.getBindign3().configDefault.setVisibility(4);
+        this$0.getBindign3().calibrar2.setVisibility(4);
+        this$0.getBindign3().calibrar1.setVisibility(4);
+        this$0.getBindign3().compoMedicion.setVisibility(4);
+        this$0.getBindign3().textView5.setVisibility(4);
+        this$0.getBindign3().botonOKTemp.setVisibility(4);
+        this$0.getBindign3().textView10.setVisibility(4);
+        this$0.getBindign3().campoTemperatura.setVisibility(4);
+        this$0.getBindign3().campoTemperatura1.setVisibility(4);
+        this$0.getBindign3().textView6.setVisibility(4);
+        this$0.getBindign3().textView7.setVisibility(0);
+        this$0.getBindign3().textView8.setVisibility(0);
+        this$0.getBindign3().textView9.setVisibility(0);
+        this$0.getBindign3().btnCalibracion1.setVisibility(0);
+        this$0.getBindign3().temCalibracion1.setVisibility(0);
+        final Ref.DoubleRef voltaje = new Ref.DoubleRef();
+        voltaje.element = 390.625d;
+        final Ref.DoubleRef temperaturaing = new Ref.DoubleRef();
+        temperaturaing.element = Double.parseDouble(this$0.getBindign3().temCalibracion1.getText().toString());
+        this$0.getBindign3().btnCalibracion1.setOnClickListener(new View.OnClickListener() { // from class: app.apaiary.aquaapp.-$$Lambda$MainActivity3$bgD1W04ILyrBbBfjHxbIwKeflps
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view) {
+                MainActivity3.m13onCreate$calibracion$lambda2(MainActivity3.this, voltaje, view);
+            }
+        });
+        this$0.getBindign3().btnAceptarCalibracion.setOnClickListener(new View.OnClickListener() { // from class: app.apaiary.aquaapp.-$$Lambda$MainActivity3$AL7QGEikbba6_9HUGRL53MfGfZw
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view) {
+                MainActivity3.m14onCreate$calibracion$lambda3(Ref.DoubleRef.this, temperaturaing, this$0, memoria, voltCalibracion, tempCalibracion, tempReferencia, objectRef, view);
+            }
+        });
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    /* renamed from: onCreate$calibracion$lambda-2  reason: not valid java name */
+    public static final void m13onCreate$calibracion$lambda2(MainActivity3 this$0, Ref.DoubleRef voltaje, View it) {
+        Intrinsics.checkNotNullParameter(this$0, "this$0");
+        Intrinsics.checkNotNullParameter(voltaje, "$voltaje");
+        if (Intrinsics.areEqual(this$0.getBindign3().temCalibracion1.getText().toString(), ingenieria.jhr.bluetoothjhr.BuildConfig.FLAVOR)) {
+            Toast.makeText(this$0, "Ingrese la temperatura para calibrar", 0).show();
+            return;
+        }
+        Ref.ObjectRef mensaje = new Ref.ObjectRef();
+        mensaje.element = ingenieria.jhr.bluetoothjhr.BuildConfig.FLAVOR;
+        this$0.getBindign3().textoResultCalibracion1.setText("Calibrando...(Tardará 20 sec.)");
+        this$0.getBindign3().textoResultCalibracion1.setVisibility(0);
+        ThreadsKt.thread$default(true, false, null, null, 0, new MainActivity3$onCreate$calibracion$1$1(this$0, mensaje, voltaje), 30, null);
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    /* renamed from: onCreate$calibracion$lambda-3  reason: not valid java name */
+    public static final void m14onCreate$calibracion$lambda3(Ref.DoubleRef voltaje, Ref.DoubleRef temperaturaing, MainActivity3 this$0, SharedPreferences $memoria, Ref.DoubleRef voltCalibracion, Ref.DoubleRef tempCalibracion, Ref.FloatRef tempReferencia, Ref.ObjectRef oxigeno, View it) {
+        Intrinsics.checkNotNullParameter(voltaje, "$voltaje");
+        Intrinsics.checkNotNullParameter(temperaturaing, "$temperaturaing");
+        Intrinsics.checkNotNullParameter(this$0, "this$0");
+        Intrinsics.checkNotNullParameter(voltCalibracion, "$voltCalibracion");
+        Intrinsics.checkNotNullParameter(tempCalibracion, "$tempCalibracion");
+        Intrinsics.checkNotNullParameter(tempReferencia, "$tempReferencia");
+        Intrinsics.checkNotNullParameter(oxigeno, "$oxigeno");
+        onCreate$guardar($memoria, this$0, String.valueOf(voltaje.element), String.valueOf(temperaturaing.element));
+        this$0.getBindign3().textView7.setVisibility(4);
+        this$0.getBindign3().textView8.setVisibility(4);
+        this$0.getBindign3().textView9.setVisibility(4);
+        this$0.getBindign3().btnCalibracion1.setVisibility(4);
+        this$0.getBindign3().temCalibracion1.setVisibility(4);
+        this$0.getBindign3().textoResultCalibracion1.setVisibility(4);
+        this$0.getBindign3().btnAceptarCalibracion.setVisibility(4);
+        this$0.getBindign3().frameLayout.setVisibility(0);
+        this$0.getBindign3().configDefault.setVisibility(0);
+        this$0.getBindign3().calibrar2.setVisibility(0);
+        this$0.getBindign3().calibrar1.setVisibility(0);
+        this$0.getBindign3().compoMedicion.setVisibility(0);
+        this$0.getBindign3().textView5.setVisibility(0);
+        this$0.getBindign3().botonOKTemp.setVisibility(0);
+        this$0.getBindign3().textView10.setVisibility(0);
+        this$0.getBindign3().campoTemperatura.setVisibility(0);
+        this$0.getBindign3().campoTemperatura1.setVisibility(0);
+        this$0.getBindign3().textView6.setVisibility(0);
+        onCreate$medicion(voltCalibracion, tempCalibracion, this$0, $memoria, tempReferencia, oxigeno);
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    /* renamed from: onCreate$lambda-4  reason: not valid java name */
+    public static final void m16onCreate$lambda4(MainActivity3 this$0, SharedPreferences $memoria, Ref.DoubleRef voltCalibracion, Ref.DoubleRef tempCalibracion, Ref.FloatRef tempReferencia, Ref.ObjectRef oxigeno, View it) {
+        Intrinsics.checkNotNullParameter(this$0, "this$0");
+        Intrinsics.checkNotNullParameter(voltCalibracion, "$voltCalibracion");
+        Intrinsics.checkNotNullParameter(tempCalibracion, "$tempCalibracion");
+        Intrinsics.checkNotNullParameter(tempReferencia, "$tempReferencia");
+        Intrinsics.checkNotNullParameter(oxigeno, "$oxigeno");
+        onCreate$calibracion(this$0, $memoria, voltCalibracion, tempCalibracion, tempReferencia, oxigeno);
+    }
+
+    public final String medicionOxigeno(String mensaje, float tempReferencia, double voltCalibracion, double tempCalibracion) {
+        List listaNivelesOxigeno;
+        String oxiDisuelto;
+        int i;
+        boolean z;
+        Intrinsics.checkNotNullParameter(mensaje, "mensaje");
+        double voltajeRecibido = (Double.parseDouble(mensaje) * 5000) / 1024;
+        System.out.println((Object) Intrinsics.stringPlus("Voltaje medido: ", Double.valueOf(voltajeRecibido)));
+        System.out.println((Object) Intrinsics.stringPlus("Mensaje: ", mensaje));
+        int i2 = 35;
+        List listaNivelesOxigeno2 = CollectionsKt.mutableListOf(Double.valueOf(14.46d), Double.valueOf(14.22d), Double.valueOf(13.82d), Double.valueOf(13.44d), Double.valueOf(13.09d), Double.valueOf(12.74d), Double.valueOf(12.42d), Double.valueOf(12.11d), Double.valueOf(11.81d), Double.valueOf(11.53d), Double.valueOf(11.26d), Double.valueOf(11.01d), Double.valueOf(10.77d), Double.valueOf(10.53d), Double.valueOf(10.3d), Double.valueOf(10.08d), Double.valueOf(9.86d), Double.valueOf(9.66d), Double.valueOf(9.46d), Double.valueOf(9.27d), Double.valueOf(9.08d), Double.valueOf(8.9d), Double.valueOf(8.73d), Double.valueOf(8.57d), Double.valueOf(8.41d), Double.valueOf(8.25d), Double.valueOf(8.11d), Double.valueOf(7.96d), Double.valueOf(7.82d), Double.valueOf(7.69d), Double.valueOf(7.56d), Double.valueOf(7.43d), Double.valueOf(7.3d), Double.valueOf(7.18d), Double.valueOf(7.07d), Double.valueOf(6.95d), Double.valueOf(6.84d), Double.valueOf(6.73d), Double.valueOf(6.63d), Double.valueOf(6.53d), Double.valueOf(6.41d), Double.valueOf(6.33d), Double.valueOf(6.23d), Double.valueOf(6.13d), Double.valueOf(6.06d), Double.valueOf(5.97d), Double.valueOf(5.88d), Double.valueOf(5.79d));
+        List<Number> listaTemperaturas = CollectionsKt.mutableListOf(Double.valueOf(0.0d), Double.valueOf(1.0d), Double.valueOf(2.0d), Double.valueOf(3.0d), Double.valueOf(4.0d), Double.valueOf(5.0d), Double.valueOf(6.0d), Double.valueOf(7.0d), Double.valueOf(8.0d), Double.valueOf(9.0d), Double.valueOf(10.0d), Double.valueOf(11.0d), Double.valueOf(12.0d), Double.valueOf(13.0d), Double.valueOf(14.0d), Double.valueOf(15.0d), Double.valueOf(16.0d), Double.valueOf(17.0d), Double.valueOf(18.0d), Double.valueOf(19.0d), Double.valueOf(20.0d), Double.valueOf(21.0d), Double.valueOf(22.0d), Double.valueOf(23.0d), Double.valueOf(24.0d), Double.valueOf(25.0d), Double.valueOf(26.0d), Double.valueOf(27.0d), Double.valueOf(28.0d), Double.valueOf(29.0d), Double.valueOf(30.0d), Double.valueOf(31.0d), Double.valueOf(32.0d), Double.valueOf(33.0d), Double.valueOf(34.0d), Double.valueOf(35.0d), Double.valueOf(36.0d), Double.valueOf(37.0d), Double.valueOf(38.0d), Double.valueOf(39.0d), Double.valueOf(40.0d), Double.valueOf(41.0d), Double.valueOf(42.0d), Double.valueOf(43.0d), Double.valueOf(44.0d), Double.valueOf(45.0d), Double.valueOf(46.0d), Double.valueOf(47.0d));
+        double v_saturacion = 0;
+        String oxiDisuelto2 = "1";
+        int contador = 0;
+        for (Number number : listaTemperaturas) {
+            double temp = number.doubleValue();
+            double v_saturacion2 = v_saturacion;
+            double v_saturacion3 = tempReferencia;
+            if (v_saturacion3 <= 47.0d && tempReferencia >= 0.0d) {
+                if (tempReferencia == ((float) temp)) {
+                    double v_saturacion4 = (voltCalibracion + (i2 * tempReferencia)) - (i2 * tempCalibracion);
+                    double medicionOxi = (((Number) listaNivelesOxigeno2.get(contador)).doubleValue() * voltajeRecibido) / v_saturacion4;
+                    String oxiDisuelto3 = (Math.round(medicionOxi * 1000.0d) / 1000.0d) + " mg/lt";
+                    return oxiDisuelto3;
+                }
+                double v_saturacion5 = tempReferencia;
+                if (v_saturacion5 <= ((Number) listaTemperaturas.get(contador)).doubleValue()) {
+                    listaNivelesOxigeno = listaNivelesOxigeno2;
+                    oxiDisuelto = oxiDisuelto2;
+                    i = i2;
+                    z = true;
+                } else if (tempReferencia >= ((Number) listaTemperaturas.get(contador + 1)).doubleValue()) {
+                    listaNivelesOxigeno = listaNivelesOxigeno2;
+                    oxiDisuelto = oxiDisuelto2;
+                    z = true;
+                    i = 35;
+                } else {
+                    double v_saturacion6 = (voltCalibracion + (35 * tempReferencia)) - (35 * tempCalibracion);
+                    double temp2 = tempReferencia;
+                    double nivelOxigenoIntermedio = ((Number) listaNivelesOxigeno2.get(contador + 1)).doubleValue() - (((((Number) listaNivelesOxigeno2.get(contador + 1)).doubleValue() - ((Number) listaNivelesOxigeno2.get(contador)).doubleValue()) / 1) * (((Number) listaTemperaturas.get(contador + 1)).doubleValue() - temp2));
+                    double medicionOxi2 = (voltajeRecibido * nivelOxigenoIntermedio) / v_saturacion6;
+                    String oxiDisuelto4 = (Math.round(medicionOxi2 * 1000.0d) / 1000.0d) + " mg/lt";
+                    return oxiDisuelto4;
+                }
+                contador++;
+                i2 = i;
+                listaNivelesOxigeno2 = listaNivelesOxigeno;
+                v_saturacion = v_saturacion2;
+                oxiDisuelto2 = oxiDisuelto;
+            }
+            return "Temperatura fuera de rango (0°C - 47°C)";
+        }
+        return oxiDisuelto2;
+    }
+
+    /* JADX INFO: Access modifiers changed from: protected */
+    @Override // androidx.fragment.app.FragmentActivity, android.app.Activity
+    public void onResume() {
+        super.onResume();
+        this.initHilo = getBluetooth().conectaBluetooth();
+    }
+
+    /* JADX INFO: Access modifiers changed from: protected */
+    @Override // androidx.fragment.app.FragmentActivity, android.app.Activity
+    public void onPause() {
+        super.onPause();
+        this.hilo = false;
+        this.initHilo = true;
+        getBluetooth().exitConexion();
+        finish();
+    }
+
+    /* JADX INFO: Access modifiers changed from: protected */
+    @Override // androidx.appcompat.app.AppCompatActivity, androidx.fragment.app.FragmentActivity, android.app.Activity
+    public void onDestroy() {
+        super.onDestroy();
+        this.initHilo = true;
+        this.hilo = false;
+    }
+}
