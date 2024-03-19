@@ -1,0 +1,88 @@
+
+import java.util.ArrayList;
+import java.util.List;
+import kotlin.Metadata;
+import kotlin.Unit;
+import kotlin.collections.CollectionsKt;
+import kotlin.jvm.functions.Function0;
+import kotlin.jvm.internal.Intrinsics;
+import kotlin.jvm.internal.Lambda;
+import kotlin.jvm.internal.Ref;
+
+/* JADX INFO: Access modifiers changed from: package-private */
+/* compiled from: MainActivity3.kt */
+@Metadata(d1 = {"\u0000\u0006\n\u0000\n\u0002\u0010\u0002\u0010\u0000\u001a\u00020\u0001H\n"}, d2 = {"<anonymous>", ingenieria.jhr.bluetoothjhr.BuildConfig.FLAVOR}, k = 3, mv = {1, 5, 1}, xi = 48)
+/* loaded from: classes3.dex */
+public final class MainActivity3$onCreate$calibracion$1$1 extends Lambda implements Function0<Unit> {
+    final /* synthetic */ Ref.ObjectRef<String> $mensaje;
+    final /* synthetic */ Ref.DoubleRef $voltaje;
+    final /* synthetic */ MainActivity3 this$0;
+
+    /* JADX INFO: Access modifiers changed from: package-private */
+    /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+    public MainActivity3$onCreate$calibracion$1$1(MainActivity3 mainActivity3, Ref.ObjectRef<String> objectRef, Ref.DoubleRef doubleRef) {
+        super(0);
+        this.this$0 = mainActivity3;
+        this.$mensaje = objectRef;
+        this.$voltaje = doubleRef;
+    }
+
+    @Override // kotlin.jvm.functions.Function0
+    public /* bridge */ /* synthetic */ Unit invoke() {
+        invoke2();
+        return Unit.INSTANCE;
+    }
+
+    /* JADX WARN: Type inference failed for: r6v3, types: [T, java.lang.String] */
+    /* renamed from: invoke  reason: avoid collision after fix types in other method */
+    public final void invoke2() {
+        while (!this.this$0.getInitHilo()) {
+            Thread.sleep(1000L);
+        }
+        new ArrayList();
+        List<Number> list = new ArrayList();
+        for (int contador = 0; this.this$0.getHilo() && contador < 35; contador++) {
+            this.this$0.getBluetooth().mTx("t");
+            Thread.sleep(1000L);
+            this.$mensaje.element = this.this$0.getBluetooth().mRx();
+            if (!Intrinsics.areEqual(this.$mensaje.element, ingenieria.jhr.bluetoothjhr.BuildConfig.FLAVOR)) {
+                if (!this.this$0.getHilo()) {
+                    break;
+                }
+                this.$voltaje.element = (Double.parseDouble(this.$mensaje.element.toString()) * 5000) / 1024;
+                list.add(Double.valueOf(this.$voltaje.element));
+                System.out.println(list);
+                this.this$0.getBluetooth().mensajeReset();
+            }
+            Thread.sleep(1000L);
+        }
+        int contadorPromedio = 0;
+        int contadorTotal = 0;
+        double sumatoria = 0.0d;
+        CollectionsKt.sort(list);
+        for (Number number : list) {
+            double i = number.doubleValue();
+            if (contadorTotal > 7 && contadorTotal < 23) {
+                sumatoria += i;
+                contadorPromedio++;
+            }
+            contadorTotal++;
+        }
+        this.$voltaje.element = sumatoria / contadorPromedio;
+        final MainActivity3 mainActivity3 = this.this$0;
+        mainActivity3.runOnUiThread(new Runnable() { // from class: app.apaiary.aquaapp.-$$Lambda$MainActivity3$onCreate$calibracion$1$1$2kwsvVCVrwSm2VGh8yfgv_ymc9o
+            @Override // java.lang.Runnable
+            public final void run() {
+                MainActivity3$onCreate$calibracion$1$1.m18invoke$lambda0(MainActivity3.this);
+            }
+        });
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    /* renamed from: invoke$lambda-0  reason: not valid java name */
+    public static final void m18invoke$lambda0(MainActivity3 this$0) {
+        Intrinsics.checkNotNullParameter(this$0, "this$0");
+        this$0.getBindign3().textoResultCalibracion1.setText("Se ha realizado con éxito la calibración!!!");
+        this$0.getBindign3().btnAceptarCalibracion.setVisibility(0);
+    }
+}
