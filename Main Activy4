@@ -1,0 +1,200 @@
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import app.apaiary.aquaapp.databinding.ActivityMain4Binding;
+import ingenieria.jhr.bluetoothjhr.BluetoothJhr;
+import java.util.ArrayList;
+import java.util.List;
+import kotlin.Metadata;
+import kotlin.Unit;
+import kotlin.concurrent.ThreadsKt;
+import kotlin.jvm.functions.Function0;
+import kotlin.jvm.internal.Intrinsics;
+import kotlin.jvm.internal.Ref;
+
+/* compiled from: MainActivity4.kt */
+@Metadata(d1 = {"\u00002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\u000b\n\u0002\b\b\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0004\u0018\u00002\u00020\u0001B\u0005¢\u0006\u0002\u0010\u0002J\u0012\u0010\u0018\u001a\u00020\u00192\b\u0010\u001a\u001a\u0004\u0018\u00010\u001bH\u0014J\b\u0010\u001c\u001a\u00020\u0019H\u0014J\b\u0010\u001d\u001a\u00020\u0019H\u0014J\b\u0010\u001e\u001a\u00020\u0019H\u0014R\u001a\u0010\u0003\u001a\u00020\u0004X\u0086.¢\u0006\u000e\n\u0000\u001a\u0004\b\u0005\u0010\u0006\"\u0004\b\u0007\u0010\bR\u001a\u0010\t\u001a\u00020\nX\u0086.¢\u0006\u000e\n\u0000\u001a\u0004\b\u000b\u0010\f\"\u0004\b\r\u0010\u000eR\u001a\u0010\u000f\u001a\u00020\u0010X\u0086\u000e¢\u0006\u000e\n\u0000\u001a\u0004\b\u0011\u0010\u0012\"\u0004\b\u0013\u0010\u0014R\u001a\u0010\u0015\u001a\u00020\u0010X\u0086\u000e¢\u0006\u000e\n\u0000\u001a\u0004\b\u0016\u0010\u0012\"\u0004\b\u0017\u0010\u0014¨\u0006\u001f"}, d2 = {"Lapp/apaiary/aquaapp/MainActivity4;", "Landroidx/appcompat/app/AppCompatActivity;", "()V", "binding4", "Lapp/apaiary/aquaapp/databinding/ActivityMain4Binding;", "getBinding4", "()Lapp/apaiary/aquaapp/databinding/ActivityMain4Binding;", "setBinding4", "(Lapp/apaiary/aquaapp/databinding/ActivityMain4Binding;)V", "bluetooth", "Lingenieria/jhr/bluetoothjhr/BluetoothJhr;", "getBluetooth", "()Lingenieria/jhr/bluetoothjhr/BluetoothJhr;", "setBluetooth", "(Lingenieria/jhr/bluetoothjhr/BluetoothJhr;)V", "hilo", ingenieria.jhr.bluetoothjhr.BuildConfig.FLAVOR, "getHilo", "()Z", "setHilo", "(Z)V", "initHilo", "getInitHilo", "setInitHilo", "onCreate", ingenieria.jhr.bluetoothjhr.BuildConfig.FLAVOR, "savedInstanceState", "Landroid/os/Bundle;", "onDestroy", "onPause", "onResume", "app_debug"}, k = 1, mv = {1, 5, 1}, xi = 48)
+/* loaded from: classes3.dex */
+public final class MainActivity4 extends AppCompatActivity {
+    public ActivityMain4Binding binding4;
+    public BluetoothJhr bluetooth;
+    private boolean hilo = true;
+    private boolean initHilo;
+
+    public final ActivityMain4Binding getBinding4() {
+        ActivityMain4Binding activityMain4Binding = this.binding4;
+        if (activityMain4Binding != null) {
+            return activityMain4Binding;
+        }
+        Intrinsics.throwUninitializedPropertyAccessException("binding4");
+        throw null;
+    }
+
+    public final void setBinding4(ActivityMain4Binding activityMain4Binding) {
+        Intrinsics.checkNotNullParameter(activityMain4Binding, "<set-?>");
+        this.binding4 = activityMain4Binding;
+    }
+
+    public final BluetoothJhr getBluetooth() {
+        BluetoothJhr bluetoothJhr = this.bluetooth;
+        if (bluetoothJhr != null) {
+            return bluetoothJhr;
+        }
+        Intrinsics.throwUninitializedPropertyAccessException("bluetooth");
+        throw null;
+    }
+
+    public final void setBluetooth(BluetoothJhr bluetoothJhr) {
+        Intrinsics.checkNotNullParameter(bluetoothJhr, "<set-?>");
+        this.bluetooth = bluetoothJhr;
+    }
+
+    public final boolean getInitHilo() {
+        return this.initHilo;
+    }
+
+    public final void setInitHilo(boolean z) {
+        this.initHilo = z;
+    }
+
+    public final boolean getHilo() {
+        return this.hilo;
+    }
+
+    public final void setHilo(boolean z) {
+        this.hilo = z;
+    }
+
+    /* JADX INFO: Access modifiers changed from: protected */
+    @Override // androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ActivityMain4Binding inflate = ActivityMain4Binding.inflate(getLayoutInflater());
+        Intrinsics.checkNotNullExpressionValue(inflate, "inflate(layoutInflater)");
+        setBinding4(inflate);
+        setContentView(getBinding4().getRoot());
+        setBluetooth(new BluetoothJhr(this, MainActivity2.class));
+        getBinding4().textoResultCalibracion1.setVisibility(4);
+        getBinding4().volverMedicion1.setVisibility(4);
+        final Ref.DoubleRef voltaje = new Ref.DoubleRef();
+        voltaje.element = 390.625d;
+        getBinding4().btnCalibracion1.setOnClickListener(new View.OnClickListener() { // from class: app.apaiary.aquaapp.-$$Lambda$MainActivity4$8WCbOY6-fB46Yhbtx9LhzTgk9yE
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view) {
+                MainActivity4.m24onCreate$lambda0(MainActivity4.this, voltaje, view);
+            }
+        });
+        getBinding4().volverMedicion1.setOnClickListener(new View.OnClickListener() { // from class: app.apaiary.aquaapp.-$$Lambda$MainActivity4$9V4qyu1OV8N-GHQyYpB1poDh6Hg
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view) {
+                MainActivity4.m25onCreate$lambda1(MainActivity4.this, voltaje, view);
+            }
+        });
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    /* renamed from: onCreate$lambda-0  reason: not valid java name */
+    public static final void m24onCreate$lambda0(final MainActivity4 this$0, final Ref.DoubleRef voltaje, View it) {
+        Intrinsics.checkNotNullParameter(this$0, "this$0");
+        Intrinsics.checkNotNullParameter(voltaje, "$voltaje");
+        if (Intrinsics.areEqual(this$0.getBinding4().temCalibraciN1.getText().toString(), ingenieria.jhr.bluetoothjhr.BuildConfig.FLAVOR)) {
+            Toast.makeText(this$0, "Ingrese la temperatura para calibrar", 0).show();
+            return;
+        }
+        final Ref.ObjectRef mensaje = new Ref.ObjectRef();
+        mensaje.element = ingenieria.jhr.bluetoothjhr.BuildConfig.FLAVOR;
+        this$0.setBluetooth(new BluetoothJhr(this$0, MainActivity2.class));
+        Double.parseDouble(this$0.getBinding4().temCalibraciN1.getText().toString());
+        ThreadsKt.thread$default(true, false, null, null, 0, new Function0<Unit>() { // from class: app.apaiary.aquaapp.MainActivity4$onCreate$1$1
+            /* JADX INFO: Access modifiers changed from: package-private */
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.INSTANCE;
+            }
+
+            /* JADX WARN: Type inference failed for: r6v3, types: [T, java.lang.String] */
+            /* renamed from: invoke  reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                while (!MainActivity4.this.getInitHilo()) {
+                    Thread.sleep(1000L);
+                }
+                int contador = 0;
+                List<Number> list = new ArrayList();
+                while (true) {
+                    if (!MainActivity4.this.getHilo() && contador >= 10) {
+                        break;
+                    }
+                    MainActivity4.this.getBluetooth().mTx("t");
+                    Thread.sleep(1000L);
+                    mensaje.element = MainActivity4.this.getBluetooth().mRx();
+                    if (!Intrinsics.areEqual(mensaje.element, ingenieria.jhr.bluetoothjhr.BuildConfig.FLAVOR)) {
+                        if (!MainActivity4.this.getHilo()) {
+                            break;
+                        }
+                        voltaje.element = (Double.parseDouble(mensaje.element.toString()) * 5000) / 1024;
+                        MainActivity4.this.getBinding4().textoResultCalibracion1.setText("Calibrando...");
+                        MainActivity4.this.getBinding4().textoResultCalibracion1.setVisibility(0);
+                        list.add(Double.valueOf(voltaje.element));
+                        MainActivity4.this.getBluetooth().mensajeReset();
+                    }
+                    Thread.sleep(1000L);
+                    contador++;
+                }
+                int contadorPromedio = 0;
+                double sumatoria = 0.0d;
+                for (Number number : list) {
+                    double i = number.doubleValue();
+                    sumatoria += i;
+                    contadorPromedio++;
+                }
+                voltaje.element = sumatoria / contadorPromedio;
+                MainActivity4.this.getBinding4().textoResultCalibracion1.setText("Se ha realizado con éxito la calibración!!!");
+                MainActivity4.this.getBinding4().volverMedicion1.setVisibility(0);
+            }
+        }, 30, null);
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    /* renamed from: onCreate$lambda-1  reason: not valid java name */
+    public static final void m25onCreate$lambda1(MainActivity4 this$0, Ref.DoubleRef voltaje, View it) {
+        Intrinsics.checkNotNullParameter(this$0, "this$0");
+        Intrinsics.checkNotNullParameter(voltaje, "$voltaje");
+        Intent intent = new Intent(this$0, MainActivity3.class);
+        intent.putExtra("voltajeCalibracion", voltaje.element);
+        intent.putExtra("temperaturaCalibracion", this$0.getBinding4().temCalibraciN1.getText().toString());
+        this$0.startActivity(intent);
+    }
+
+    /* JADX INFO: Access modifiers changed from: protected */
+    @Override // androidx.fragment.app.FragmentActivity, android.app.Activity
+    public void onResume() {
+        super.onResume();
+        this.initHilo = getBluetooth().conectaBluetooth();
+    }
+
+    /* JADX INFO: Access modifiers changed from: protected */
+    @Override // androidx.fragment.app.FragmentActivity, android.app.Activity
+    public void onPause() {
+        super.onPause();
+        this.hilo = false;
+        this.initHilo = true;
+        getBluetooth().exitConexion();
+        finish();
+    }
+
+    /* JADX INFO: Access modifiers changed from: protected */
+    @Override // androidx.appcompat.app.AppCompatActivity, androidx.fragment.app.FragmentActivity, android.app.Activity
+    public void onDestroy() {
+        super.onDestroy();
+        this.initHilo = true;
+        this.hilo = false;
+    }
+}
