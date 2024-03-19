@@ -1,0 +1,71 @@
+package app.apaiary.aquaapp;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import androidx.appcompat.app.AppCompatActivity;
+import app.apaiary.aquaapp.databinding.ActivityMain2Binding;
+import ingenieria.jhr.bluetoothjhr.BluetoothJhr;
+import kotlin.Metadata;
+import kotlin.jvm.internal.Intrinsics;
+
+/* compiled from: MainActivity2.kt */
+@Metadata(d1 = {"\u0000 \n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\u0018\u00002\u00020\u0001B\u0005¢\u0006\u0002\u0010\u0002J\u0012\u0010\t\u001a\u00020\n2\b\u0010\u000b\u001a\u0004\u0018\u00010\fH\u0014R\u001a\u0010\u0003\u001a\u00020\u0004X\u0086.¢\u0006\u000e\n\u0000\u001a\u0004\b\u0005\u0010\u0006\"\u0004\b\u0007\u0010\b¨\u0006\r"}, d2 = {"Lapp/apaiary/aquaapp/MainActivity2;", "Landroidx/appcompat/app/AppCompatActivity;", "()V", "binding", "Lapp/apaiary/aquaapp/databinding/ActivityMain2Binding;", "getBinding", "()Lapp/apaiary/aquaapp/databinding/ActivityMain2Binding;", "setBinding", "(Lapp/apaiary/aquaapp/databinding/ActivityMain2Binding;)V", "onCreate", ingenieria.jhr.bluetoothjhr.BuildConfig.FLAVOR, "savedInstanceState", "Landroid/os/Bundle;", "app_debug"}, k = 1, mv = {1, 5, 1}, xi = 48)
+/* loaded from: classes3.dex */
+public final class MainActivity2 extends AppCompatActivity {
+    public ActivityMain2Binding binding;
+
+    public final ActivityMain2Binding getBinding() {
+        ActivityMain2Binding activityMain2Binding = this.binding;
+        if (activityMain2Binding != null) {
+            return activityMain2Binding;
+        }
+        Intrinsics.throwUninitializedPropertyAccessException("binding");
+        throw null;
+    }
+
+    public final void setBinding(ActivityMain2Binding activityMain2Binding) {
+        Intrinsics.checkNotNullParameter(activityMain2Binding, "<set-?>");
+        this.binding = activityMain2Binding;
+    }
+
+    /* JADX INFO: Access modifiers changed from: protected */
+    @Override // androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ActivityMain2Binding inflate = ActivityMain2Binding.inflate(getLayoutInflater());
+        Intrinsics.checkNotNullExpressionValue(inflate, "inflate(layoutInflater)");
+        setBinding(inflate);
+        setContentView(getBinding().getRoot());
+        getBinding().inicioMA2.setOnClickListener(new View.OnClickListener() { // from class: app.apaiary.aquaapp.-$$Lambda$MainActivity2$pTQ6LYixhpKDMvOKD2Tmf4cFg2A
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view) {
+                MainActivity2.m10onCreate$lambda0(MainActivity2.this, view);
+            }
+        });
+        final BluetoothJhr bluetooth = new BluetoothJhr(this, getBinding().dispositivos, MainActivity3.class);
+        bluetooth.onBluetooth();
+        getBinding().dispositivos.setOnItemClickListener(new AdapterView.OnItemClickListener() { // from class: app.apaiary.aquaapp.-$$Lambda$MainActivity2$tP5II3mW6TWqhPLWkxGXLBPNTc0
+            @Override // android.widget.AdapterView.OnItemClickListener
+            public final void onItemClick(AdapterView adapterView, View view, int i, long j) {
+                MainActivity2.m11onCreate$lambda1(BluetoothJhr.this, adapterView, view, i, j);
+            }
+        });
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    /* renamed from: onCreate$lambda-0  reason: not valid java name */
+    public static final void m10onCreate$lambda0(MainActivity2 this$0, View it) {
+        Intrinsics.checkNotNullParameter(this$0, "this$0");
+        Intent intent = new Intent(this$0, MainActivity.class);
+        this$0.startActivity(intent);
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    /* renamed from: onCreate$lambda-1  reason: not valid java name */
+    public static final void m11onCreate$lambda1(BluetoothJhr bluetooth, AdapterView adapterView, View view, int i, long l) {
+        Intrinsics.checkNotNullParameter(bluetooth, "$bluetooth");
+        bluetooth.bluetoothSeleccion(i);
+    }
+}
